@@ -1,103 +1,1129 @@
-import Image from "next/image";
+"use client";
+
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { 
+  Trophy, 
+  Users, 
+  Target, 
+  Lightbulb, 
+  Star,
+  Zap,
+  MessageSquare,
+  Flame,
+  Scale,
+  Gift,
+  Rocket,
+  Brain,
+  Share2,
+  Star as StarIcon,
+  Linkedin,
+  Calendar,
+  ArrowRight
+} from "lucide-react";
+import { ScrollToTop } from "@/components/ui/scroll-to-top";
+
+import { ParticleBackground } from "@/components/ui/particle-background";
+import { FloatingElements } from "@/components/ui/floating-elements";
+import { InteractiveCard } from "@/components/ui/interactive-card";
+import { GlowingButton } from "@/components/ui/glowing-button";
+import { AnimatedCounter } from "@/components/ui/animated-counter";
+import { GradientText } from "@/components/ui/gradient-text";
+import { HeroBackground } from "@/components/ui/hero-background";
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [showAllProblems, setShowAllProblems] = useState(false);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+  const fadeInUp = {
+    initial: { opacity: 0, y: 60 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.6 }
+  };
+
+  const staggerContainer = {
+    animate: {
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  // All 20 Problem Statements
+  const allProblemStatements = [
+    {
+      id: 1,
+      number: "#1",
+      title: "The Smart Document Processor",
+      description: "Build an AI system that automatically extracts, validates, and processes information from various document types (invoices, contracts, forms) with high accuracy.",
+      category: "Team Efficiency",
+      color: "blue"
+    },
+    {
+      id: 2,
+      number: "#2", 
+      title: "The Predictive Analytics Dashboard",
+      description: "Create a real-time dashboard that predicts merchant churn, payment failures, and revenue trends using machine learning algorithms.",
+      category: "Data Accessibility",
+      color: "purple"
+    },
+    {
+      id: 3,
+      number: "#3",
+      title: "The Automated Support Bot",
+      description: "Develop an intelligent chatbot that can handle 80% of common merchant queries and automatically escalate complex issues to human agents.",
+      category: "Merchant Experience",
+      color: "green"
+    },
+    {
+      id: 4,
+      number: "#4",
+      title: "The Fraud Detection Engine",
+      description: "Build an AI-powered system that detects fraudulent transactions in real-time with high precision and minimal false positives.",
+      category: "Team Efficiency",
+      color: "red"
+    },
+    {
+      id: 5,
+      number: "#5",
+      title: "The Performance Optimization Tool",
+      description: "Create an AI tool that analyzes system performance metrics and automatically suggests optimizations for better efficiency.",
+      category: "Transparency to OKRs",
+      color: "orange"
+    },
+    {
+      id: 6,
+      number: "#6",
+      title: "The One-Click Audit Tool",
+      description: "Build an enhanced test mode that simulates all product features, payment methods, and user journeys. The tool should run automated tests against an MID, check for integration breakages, and suggest code-level fixes.",
+      category: "Merchant Experience",
+      color: "blue"
+    },
+    {
+      id: 7,
+      number: "#7",
+      title: "The Automated Metric Board",
+      description: "Create a single dashboard that pulls performance metrics (CCNR, SDR, NPS, MHI) from various sources. The AI component should analyze trends and suggest actionable steps for improvement.",
+      category: "Transparency to OKRs",
+      color: "purple"
+    },
+    {
+      id: 8,
+      number: "#8",
+      title: "The Survey Insight Engine",
+      description: "Develop an AI algorithm to analyze survey feedback and automatically categorize it by reason, infer merchant use cases, and identify potential knowledge gaps in support processes.",
+      category: "Team Efficiency",
+      color: "green"
+    },
+    {
+      id: 9,
+      number: "#9",
+      title: "The \"Ask Me Anything\" Data Bot",
+      description: "Build a Text-to-SQL bot that allows anyone to get real-time data by asking questions in natural language, without waiting for the analytics team.",
+      category: "Data Accessibility",
+      color: "orange"
+    },
+    {
+      id: 10,
+      number: "#10",
+      title: "The Automated SR Analyst",
+      description: "Build an algorithm that automates the entire Service Request analysis process, from data gathering to generating insights and summary reports.",
+      category: "Team Efficiency",
+      color: "blue"
+    },
+    {
+      id: 11,
+      number: "#11",
+      title: "The Intelligent Gatekeeper",
+      description: "Create a bot that automatically verifies request validity and provides directional overview of where problems might lie and which team should handle them.",
+      category: "Team Efficiency",
+      color: "purple"
+    },
+    {
+      id: 12,
+      number: "#12",
+      title: "The Merchant Onboarding Optimizer",
+      description: "Develop an AI system that streamlines the merchant onboarding process by automating document verification, risk assessment, and account setup.",
+      category: "Merchant Experience",
+      color: "green"
+    },
+    {
+      id: 13,
+      number: "#13",
+      title: "The Real-time Compliance Monitor",
+      description: "Build an automated system that monitors transactions for compliance violations and generates real-time alerts for regulatory requirements.",
+      category: "Team Efficiency",
+      color: "red"
+    },
+    {
+      id: 14,
+      number: "#14",
+      title: "The Customer Journey Analyzer",
+      description: "Create an AI tool that tracks and analyzes merchant interactions across all touchpoints to identify friction points and optimization opportunities.",
+      category: "Merchant Experience",
+      color: "blue"
+    },
+    {
+      id: 15,
+      number: "#15",
+      title: "The Automated Report Generator",
+      description: "Develop a system that automatically generates comprehensive reports from multiple data sources, with customizable templates and real-time updates.",
+      category: "Transparency to OKRs",
+      color: "purple"
+    },
+    {
+      id: 16,
+      number: "#16",
+      title: "The Intelligent Knowledge Base",
+      description: "Build an AI-powered knowledge management system that automatically updates, categorizes, and suggests relevant information to support teams.",
+      category: "Team Efficiency",
+      color: "green"
+    },
+    {
+      id: 17,
+      number: "#17",
+      title: "The Predictive Maintenance System",
+      description: "Create an AI system that predicts system failures and maintenance needs before they occur, reducing downtime and improving reliability.",
+      category: "Data Accessibility",
+      color: "orange"
+    },
+    {
+      id: 18,
+      number: "#18",
+      title: "The Automated SLA Monitor",
+      description: "Build a system that tracks Service Level Agreements in real-time and automatically escalates issues when thresholds are breached.",
+      category: "Transparency to OKRs",
+      color: "red"
+    },
+    {
+      id: 19,
+      number: "#19",
+      title: "The Merchant Sentiment Analyzer",
+      description: "Develop an AI tool that analyzes merchant communications to gauge satisfaction levels and identify potential issues before they escalate.",
+      category: "Merchant Experience",
+      color: "blue"
+    },
+    {
+      id: 20,
+      number: "#20",
+      title: "The Automated Training Recommender",
+      description: "Create an AI system that analyzes employee performance and automatically recommends personalized training programs to improve skills and productivity.",
+      category: "Team Efficiency",
+      color: "purple"
+    }
+  ];
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white">
+      
+      {/* Hero Section */}
+      <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <HeroBackground />
+        <ParticleBackground />
+        <FloatingElements />
+        
+        {/* Background gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-transparent to-purple-600/10"></div>
+        
+        <motion.div 
+          className="relative z-10 text-center max-w-5xl mx-auto"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          {/* Event Badge */}
+          <motion.div
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-full mb-8"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.2, duration: 0.6 }}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+            <Calendar className="h-5 w-5" />
+            <span className="font-semibold">August 20-22, 2025</span>
+          </motion.div>
+
+          <GradientText 
+            className="text-5xl sm:text-7xl lg:text-8xl font-bold mb-8"
+            animate={true}
+          >
+            AlgoRhythm
+          </GradientText>
+
+          <motion.p 
+            className="text-2xl sm:text-3xl text-gray-300 mb-8 max-w-3xl mx-auto font-light"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.8 }}
+          >
+            Solving Today&apos;s Challenges for a Smarter Tomorrow
+          </motion.p>
+
+          <motion.p 
+            className="text-lg sm:text-xl text-gray-400 mb-10 max-w-4xl mx-auto leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+          >
+            🎯 Get ready to unleash your creativity! AlgoRhythm is here to foster innovation, solve real-world business problems within BEST, and enhance cross-functional collaboration using the power of AI.
+          </motion.p>
+
+          {/* <motion.div
+            className="mb-10"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.6, duration: 0.8 }}
+          >
+            <img 
+              src="/razorpay-logo.svg" 
+              alt="Razorpay" 
+              className="h-16 mx-auto opacity-90 hover:opacity-100 transition-opacity"
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+          </motion.div> */}
+
+          <motion.div
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.7, duration: 0.8 }}
           >
-            Read our docs
-          </a>
+            <GlowingButton>
+              Register Now
+            </GlowingButton>
+          </motion.div>
+
+          {/* Stats Preview */}
+          <motion.div 
+            className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 max-w-4xl mx-auto"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8, duration: 0.8 }}
+          >
+            <div className="text-center">
+              <div className="text-3xl font-bold text-blue-400 mb-2">20+</div>
+              <div className="text-gray-400 text-sm">Challenges</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-purple-400 mb-2">2-4</div>
+              <div className="text-gray-400 text-sm">Team Size</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-green-400 mb-2">2 + Finale</div>
+              <div className="text-gray-400 text-sm">Rounds</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-orange-400 mb-2">₹50K</div>
+              <div className="text-gray-400 text-sm">Prize Pool</div>
+            </div>
+          </motion.div>
+        </motion.div>
+      </section>
+
+      {/* Problem Statement Pool Section */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-900 to-black relative">
+        <div className="absolute inset-0 bg-gradient-to-r from-green-600/5 to-blue-600/5"></div>
+        <div className="max-w-7xl mx-auto relative z-10">
+          <motion.div 
+            className="text-center mb-20"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <div className="flex items-center justify-center gap-3 mb-6">
+              <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-blue-500 rounded-full flex items-center justify-center">
+                <Target className="h-6 w-6 text-white" />
+              </div>
+              <GradientText className="text-4xl sm:text-5xl font-bold" animate={false}>
+                Problem Statement Pool
+              </GradientText>
+            </div>
+            <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
+              Choose from 20 real-time business challenges designed by BEST leaders. Each problem addresses critical needs across Merchant Experience, Team Efficiency, Data Accessibility, and Transparency to OKRs.
+            </p>
+          </motion.div>
+
+          <motion.div 
+            className="grid lg:grid-cols-2 gap-8 mb-12"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
+            {/* Sample Problem Statements - First 6 */}
+            <motion.div variants={fadeInUp}>
+              <Card className="h-full bg-gradient-to-br from-gray-800 to-gray-900 border border-blue-500/30 hover:border-blue-500/60 hover:shadow-2xl transition-all duration-500 group">
+                <CardHeader>
+                  <div className="flex items-center justify-between mb-4">
+                    <Badge className="bg-blue-900/50 text-blue-200 border border-blue-500/30">#6</Badge>
+                    <Badge className="bg-green-900/50 text-green-200 border border-green-500/30">Merchant Experience</Badge>
+                  </div>
+                  <CardTitle className="text-xl text-white group-hover:text-blue-400 transition-colors">
+                    The One-Click Audit Tool
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-300 text-base leading-relaxed mb-4">
+                    Build an enhanced test mode that simulates all product features, payment methods, and user journeys. The tool should run automated tests against an MID, check for integration breakages, and suggest code-level fixes.
+                  </p>
+                  
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            <motion.div variants={fadeInUp}>
+              <Card className="h-full bg-gradient-to-br from-gray-800 to-gray-900 border border-purple-500/30 hover:border-purple-500/60 hover:shadow-2xl transition-all duration-500 group">
+                <CardHeader>
+                  <div className="flex items-center justify-between mb-4">
+                    <Badge className="bg-purple-900/50 text-purple-200 border border-purple-500/30">#7</Badge>
+                    <Badge className="bg-orange-900/50 text-orange-200 border border-orange-500/30">Transparency to OKRs</Badge>
+                  </div>
+                  <CardTitle className="text-xl text-white group-hover:text-purple-400 transition-colors">
+                    The Automated Metric Board
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-300 text-base leading-relaxed mb-4">
+                    Create a single dashboard that pulls performance metrics (CCNR, SDR, NPS, MHI) from various sources. The AI component should analyze trends and suggest actionable steps for improvement.
+                  </p>
+                  
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            <motion.div variants={fadeInUp}>
+              <Card className="h-full bg-gradient-to-br from-gray-800 to-gray-900 border border-green-500/30 hover:border-green-500/60 hover:shadow-2xl transition-all duration-500 group">
+                <CardHeader>
+                  <div className="flex items-center justify-between mb-4">
+                    <Badge className="bg-green-900/50 text-green-200 border border-green-500/30">#8</Badge>
+                    <div className="flex gap-2">
+                      <Badge className="bg-blue-900/50 text-blue-200 border border-blue-500/30 text-xs">Team Efficiency</Badge>
+                      <Badge className="bg-green-900/50 text-green-200 border border-green-500/30 text-xs">Merchant Experience</Badge>
+                    </div>
+                  </div>
+                  <CardTitle className="text-xl text-white group-hover:text-green-400 transition-colors">
+                    The Survey Insight Engine
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-300 text-base leading-relaxed mb-4">
+                    Develop an AI algorithm to analyze survey feedback and automatically categorize it by reason, infer merchant use cases, and identify potential knowledge gaps in support processes.
+                  </p>
+                  
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            <motion.div variants={fadeInUp}>
+              <Card className="h-full bg-gradient-to-br from-gray-800 to-gray-900 border border-orange-500/30 hover:border-orange-500/60 hover:shadow-2xl transition-all duration-500 group">
+                <CardHeader>
+                  <div className="flex items-center justify-between mb-4">
+                    <Badge className="bg-orange-900/50 text-orange-200 border border-orange-500/30">#9</Badge>
+                    <Badge className="bg-blue-900/50 text-blue-200 border border-blue-500/30">Data Accessibility</Badge>
+                  </div>
+                  <CardTitle className="text-xl text-white group-hover:text-orange-400 transition-colors">
+                                         The &quot;Ask Me Anything&quot; Data Bot
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-300 text-base leading-relaxed mb-4">
+                    Build a Text-to-SQL bot that allows anyone to get real-time data by asking questions in natural language, without waiting for the analytics team.
+                  </p>
+                  
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            <motion.div variants={fadeInUp}>
+              <Card className="h-full bg-gradient-to-br from-gray-800 to-gray-900 border border-blue-500/30 hover:border-blue-500/60 hover:shadow-2xl transition-all duration-500 group">
+                <CardHeader>
+                  <div className="flex items-center justify-between mb-4">
+                    <Badge className="bg-blue-900/50 text-blue-200 border border-blue-500/30">#10</Badge>
+                    <Badge className="bg-green-900/50 text-green-200 border border-green-500/30">Team Efficiency</Badge>
+                  </div>
+                  <CardTitle className="text-xl text-white group-hover:text-blue-400 transition-colors">
+                    The Automated SR Analyst
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-300 text-base leading-relaxed mb-4">
+                    Build an algorithm that automates the entire Service Request analysis process, from data gathering to generating insights and summary reports.
+                  </p>
+                  
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            <motion.div variants={fadeInUp}>
+              <Card className="h-full bg-gradient-to-br from-gray-800 to-gray-900 border border-purple-500/30 hover:border-purple-500/60 hover:shadow-2xl transition-all duration-500 group">
+                <CardHeader>
+                  <div className="flex items-center justify-between mb-4">
+                    <Badge className="bg-purple-900/50 text-purple-200 border border-purple-500/30">#11</Badge>
+                    <Badge className="bg-green-900/50 text-green-200 border border-green-500/30">Team Efficiency</Badge>
+                  </div>
+                  <CardTitle className="text-xl text-white group-hover:text-purple-400 transition-colors">
+                    The Intelligent Gatekeeper
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-300 text-base leading-relaxed mb-4">
+                    Create a bot that automatically verifies request validity and provides directional overview of where problems might lie and which team should handle them.
+                  </p>
+                  
+                </CardContent>
+              </Card>
+            </motion.div>
+          </motion.div>
+
+          {/* View All Problems Button */}
+          <motion.div 
+            className="text-center mt-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <Button 
+              onClick={() => setShowAllProblems(!showAllProblems)}
+              className="bg-gradient-to-r from-green-500 to-blue-600 hover:from-green-600 hover:to-blue-700 text-white font-bold px-10 py-5 text-xl rounded-2xl shadow-2xl hover:shadow-green-500/25 transition-all duration-300 transform hover:scale-105"
+            >
+              {showAllProblems ? "Hide Problem Statements" : "View All 20 Problem Statements"}
+              <ArrowRight className={`ml-3 h-6 w-6 transition-transform duration-300 ${showAllProblems ? 'rotate-90' : ''}`} />
+            </Button>
+          </motion.div>
+
+          {/* All Problem Statements Modal */}
+          <AnimatePresence>
+            {showAllProblems && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.5 }}
+                className="mt-16"
+              >
+                <div className="grid lg:grid-cols-2 gap-8">
+                  {allProblemStatements.map((problem, index) => {
+                    const colorClasses = {
+                      blue: {
+                        border: "border-blue-500/30 hover:border-blue-500/60",
+                        badge: "bg-blue-900/50 text-blue-200 border-blue-500/30",
+                        title: "group-hover:text-blue-400"
+                      },
+                      purple: {
+                        border: "border-purple-500/30 hover:border-purple-500/60",
+                        badge: "bg-purple-900/50 text-purple-200 border-purple-500/30",
+                        title: "group-hover:text-purple-400"
+                      },
+                      green: {
+                        border: "border-green-500/30 hover:border-green-500/60",
+                        badge: "bg-green-900/50 text-green-200 border-green-500/30",
+                        title: "group-hover:text-green-400"
+                      },
+                      orange: {
+                        border: "border-orange-500/30 hover:border-orange-500/60",
+                        badge: "bg-orange-900/50 text-orange-200 border-orange-500/30",
+                        title: "group-hover:text-orange-400"
+                      },
+                      red: {
+                        border: "border-red-500/30 hover:border-red-500/60",
+                        badge: "bg-red-900/50 text-red-200 border-red-500/30",
+                        title: "group-hover:text-red-400"
+                      }
+                    };
+
+                    const colors = colorClasses[problem.color as keyof typeof colorClasses];
+
+                    return (
+                      <motion.div
+                        key={problem.id}
+                        variants={fadeInUp}
+                        initial="initial"
+                        animate="animate"
+                        transition={{ delay: index * 0.1 }}
+                      >
+                        <Card className={`h-full bg-gradient-to-br from-gray-800 to-gray-900 ${colors.border} hover:shadow-2xl transition-all duration-500 group`}>
+                          <CardHeader>
+                            <div className="flex items-center justify-between mb-4">
+                              <Badge className={`${colors.badge} border`}>
+                                {problem.number}
+                              </Badge>
+                              <Badge className={`${colors.badge} border`}>
+                                {problem.category}
+                              </Badge>
+                            </div>
+                            <CardTitle className={`text-xl text-white ${colors.title} transition-colors`}>
+                              {problem.title}
+                            </CardTitle>
+                          </CardHeader>
+                          <CardContent>
+                            <p className="text-gray-300 text-base leading-relaxed mb-4">
+                              {problem.description}
+                            </p>
+                          </CardContent>
+                        </Card>
+                      </motion.div>
+                    );
+                  })}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </section>
+
+      {/* How It Works Section */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-900 to-black relative">
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 to-purple-600/5"></div>
+        <div className="max-w-7xl mx-auto relative z-10">
+          <motion.div 
+            className="text-center mb-20"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <div className="flex items-center justify-center gap-3 mb-6">
+              <div className="w-12 h-12 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center">
+                <Flame className="h-6 w-6 text-white" />
+              </div>
+              <GradientText className="text-4xl sm:text-5xl font-bold" animate={false}>
+                How It Works
+              </GradientText>
+            </div>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+              One incredible journey, multiple amazing solutions! Join forces with your BEST colleagues to tackle real business challenges.
+            </p>
+          </motion.div>
+
+          <motion.div 
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
+            <InteractiveCard delay={0.1}>
+              <Card className="h-full bg-gradient-to-br from-gray-800 to-gray-900 border border-blue-500/30 hover:border-blue-500/60 hover:shadow-2xl transition-all duration-500 group">
+                <CardHeader className="text-center pb-4">
+                  <div className="w-20 h-20 mx-auto bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <Zap className="h-10 w-10 text-white" />
+                  </div>
+                  <CardTitle className="text-2xl text-white flex items-center justify-center gap-3 mb-2">
+                    <span className="text-2xl">👤</span>
+                    Single-Track
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="text-center">
+                  <p className="text-gray-300 text-lg leading-relaxed">One incredible journey, multiple amazing solutions!</p>
+                </CardContent>
+              </Card>
+            </InteractiveCard>
+
+            <InteractiveCard delay={0.2}>
+              <Card className="h-full bg-gradient-to-br from-gray-800 to-gray-900 border border-purple-500/30 hover:border-purple-500/60 hover:shadow-2xl transition-all duration-500 group">
+                <CardHeader className="text-center pb-4">
+                  <div className="w-20 h-20 mx-auto bg-gradient-to-br from-purple-600 to-purple-700 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <Users className="h-10 w-10 text-white" />
+                  </div>
+                  <CardTitle className="text-2xl text-white flex items-center justify-center gap-3 mb-2">
+                    <span className="text-2xl">👥</span>
+                    Team Power
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="text-center">
+                  <p className="text-gray-300 text-lg leading-relaxed">2-4 members from across BEST department functions</p>
+                </CardContent>
+              </Card>
+            </InteractiveCard>
+
+            <InteractiveCard delay={0.3}>
+              <Card className="h-full bg-gradient-to-br from-gray-800 to-gray-900 border border-green-500/30 hover:border-green-500/60 hover:shadow-2xl transition-all duration-500 group">
+                <CardHeader className="text-center pb-4">
+                  <div className="w-20 h-20 mx-auto bg-gradient-to-br from-green-600 to-green-700 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <Target className="h-10 w-10 text-white" />
+                  </div>
+                  <CardTitle className="text-2xl text-white flex items-center justify-center gap-3 mb-2">
+                    <span className="text-2xl">🎯</span>
+                    The Challenge
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="text-center">
+                  <p className="text-gray-300 text-lg leading-relaxed">Choose from 20 real-time business challenges</p>
+                </CardContent>
+              </Card>
+            </InteractiveCard>
+
+            <InteractiveCard delay={0.4}>
+              <Card className="h-full bg-gradient-to-br from-gray-800 to-gray-900 border border-orange-500/30 hover:border-orange-500/60 hover:shadow-2xl transition-all duration-500 group">
+                <CardHeader className="text-center pb-4">
+                  <div className="w-20 h-20 mx-auto bg-gradient-to-br from-orange-600 to-orange-700 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <Trophy className="h-10 w-10 text-white" />
+                  </div>
+                  <CardTitle className="text-2xl text-white flex items-center justify-center gap-3 mb-2">
+                    <span className="text-2xl">🏆</span>
+                    Event Structure
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="text-center">
+                  <p className="text-gray-300 text-lg leading-relaxed">2 rounds + finale, top 5 teams advance</p>
+                </CardContent>
+              </Card>
+            </InteractiveCard>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Judging & Assessment Section */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-black relative">
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-600/5 to-blue-600/5"></div>
+        <div className="max-w-7xl mx-auto relative z-10">
+          <motion.div 
+            className="text-center mb-20"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <div className="flex items-center justify-center gap-3 mb-6">
+              <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
+                <Scale className="h-6 w-6 text-white" />
+              </div>
+              <GradientText className="text-4xl sm:text-5xl font-bold" animate={false}>
+                Judging & Assessment
+              </GradientText>
+            </div>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+              Expert panel of 3 judges including at least one BEST internal leader.
+            </p>
+          </motion.div>
+
+          <motion.div 
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
+            <motion.div 
+              variants={fadeInUp}
+              whileHover={{
+                scale: 1.05,
+                transition: { duration: 0.2 },
+              }}
+            >
+              <Card className="h-full bg-gradient-to-br from-gray-800 to-gray-900 border border-blue-500/30 group cursor-pointer hover:shadow-2xl transition-all duration-500">
+                <CardHeader className="text-center">
+                  <motion.div 
+                    className="w-20 h-20 mx-auto bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center mb-6"
+                    whileHover={{
+                      scale: 1.1,
+                      rotate: 360,
+                      transition: { duration: 0.5 },
+                    }}
+                  >
+                    <Brain className="h-10 w-10 text-white" />
+                  </motion.div>
+                  <CardTitle className="text-xl text-white group-hover:text-blue-400 transition-colors mb-3">Innovation & AI Tool Usage</CardTitle>
+                  <Badge className="w-fit mx-auto bg-blue-900/50 text-blue-200 border border-blue-500/30 text-lg px-4 py-2">
+                    <AnimatedCounter end={30} />%
+                  </Badge>
+                </CardHeader>
+                <CardContent className="text-center">
+                  <p className="text-gray-300 text-base leading-relaxed">Creative solutions leveraging AI technologies</p>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            <motion.div 
+              variants={fadeInUp}
+              whileHover={{
+                scale: 1.05,
+                transition: { duration: 0.2 },
+              }}
+            >
+              <Card className="h-full bg-gradient-to-br from-gray-800 to-gray-900 border border-purple-500/30 group cursor-pointer hover:shadow-2xl transition-all duration-500">
+                <CardHeader className="text-center">
+                  <motion.div 
+                    className="w-20 h-20 mx-auto bg-gradient-to-br from-purple-600 to-purple-700 rounded-full flex items-center justify-center mb-6"
+                    whileHover={{
+                      scale: 1.1,
+                      rotate: 360,
+                      transition: { duration: 0.5 },
+                    }}
+                  >
+                    <Target className="h-10 w-10 text-white" />
+                  </motion.div>
+                  <CardTitle className="text-xl text-white group-hover:text-purple-400 transition-colors mb-3">Impact & Feasibility</CardTitle>
+                  <Badge className="w-fit mx-auto bg-purple-900/50 text-purple-200 border border-purple-500/30 text-lg px-4 py-2">
+                    <AnimatedCounter end={30} />%
+                  </Badge>
+                </CardHeader>
+                <CardContent className="text-center">
+                  <p className="text-gray-300 text-base leading-relaxed">Real-world impact and implementation potential</p>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            <motion.div 
+              variants={fadeInUp}
+              whileHover={{
+                scale: 1.05,
+                transition: { duration: 0.2 },
+              }}
+            >
+              <Card className="h-full bg-gradient-to-br from-gray-800 to-gray-900 border border-green-500/30 group cursor-pointer hover:shadow-2xl transition-all duration-500">
+                <CardHeader className="text-center">
+                  <motion.div 
+                    className="w-20 h-20 mx-auto bg-gradient-to-br from-green-600 to-green-700 rounded-full flex items-center justify-center mb-6"
+                    whileHover={{
+                      scale: 1.1,
+                      rotate: 360,
+                      transition: { duration: 0.5 },
+                    }}
+                  >
+                    <Zap className="h-10 w-10 text-white" />
+                  </motion.div>
+                  <CardTitle className="text-xl text-white group-hover:text-green-400 transition-colors mb-3">Technical Execution</CardTitle>
+                  <Badge className="w-fit mx-auto bg-green-900/50 text-green-200 border border-green-500/30 text-lg px-4 py-2">
+                    <AnimatedCounter end={25} />%
+                  </Badge>
+                </CardHeader>
+                <CardContent className="text-center">
+                  <p className="text-gray-300 text-base leading-relaxed">Quality of technical implementation</p>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            <motion.div 
+              variants={fadeInUp}
+              whileHover={{
+                scale: 1.05,
+                transition: { duration: 0.2 },
+              }}
+            >
+              <Card className="h-full bg-gradient-to-br from-gray-800 to-gray-900 border border-orange-500/30 group cursor-pointer hover:shadow-2xl transition-all duration-500">
+                <CardHeader className="text-center">
+                  <motion.div 
+                    className="w-20 h-20 mx-auto bg-gradient-to-br from-orange-600 to-orange-700 rounded-full flex items-center justify-center mb-6"
+                    whileHover={{
+                      scale: 1.1,
+                      rotate: 360,
+                      transition: { duration: 0.5 },
+                    }}
+                  >
+                    <Share2 className="h-10 w-10 text-white" />
+                  </motion.div>
+                  <CardTitle className="text-xl text-white group-hover:text-orange-400 transition-colors mb-3">Presentation & Storytelling</CardTitle>
+                  <Badge className="w-fit mx-auto bg-orange-900/50 text-orange-200 border border-orange-500/30 text-lg px-4 py-2">
+                    <AnimatedCounter end={15} />%
+                  </Badge>
+                </CardHeader>
+                <CardContent className="text-center">
+                  <p className="text-gray-300 text-base leading-relaxed">Clear communication and compelling narrative</p>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </motion.div>
+
+          {/* Experience Motto */}
+          <motion.div 
+            className="mt-16 text-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <div className="inline-flex items-center gap-4 bg-gradient-to-r from-gray-800 to-gray-900 border border-yellow-500/30 rounded-2xl px-8 py-6 shadow-2xl">
+              <div className="w-12 h-12 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-full flex items-center justify-center">
+                <StarIcon className="h-6 w-6 text-white" />
+              </div>
+              <span className="text-blue-400 font-semibold text-lg">&quot;Experience is paramount at BEST&quot;</span>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Prizes Section */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-900 to-black relative">
+        <div className="absolute inset-0 bg-gradient-to-r from-yellow-600/5 to-orange-600/5"></div>
+        <div className="max-w-7xl mx-auto relative z-10">
+          <motion.div 
+            className="text-center mb-20"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <div className="flex items-center justify-center gap-3 mb-6">
+              <div className="w-12 h-12 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-full flex items-center justify-center">
+                <Gift className="h-6 w-6 text-white" />
+              </div>
+              <GradientText className="text-4xl sm:text-5xl font-bold" animate={false}>
+                The Prizes
+              </GradientText>
+            </div>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+              Compete for amazing rewards and see your ideas come to life.
+            </p>
+          </motion.div>
+
+          <motion.div 
+            className="grid lg:grid-cols-2 gap-12"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
+            <motion.div variants={fadeInUp}>
+              <Card className="h-full bg-gradient-to-br from-yellow-400 via-yellow-500 to-orange-500 border-0 shadow-2xl hover:shadow-yellow-500/25 transition-all duration-500">
+                <CardHeader className="text-center pb-6">
+                  <div className="w-32 h-32 mx-auto bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mb-8 relative">
+                    <div className="absolute inset-0 bg-gradient-to-br from-yellow-600 to-orange-600 rounded-full animate-pulse"></div>
+                    <span className="relative text-6xl font-bold text-white">1</span>
+                  </div>
+                  <CardTitle className="text-4xl text-white font-bold mb-4">Winner</CardTitle>
+                </CardHeader>
+                <CardContent className="text-center">
+                  <ul className="space-y-4 text-white">
+                    <li className="flex items-center justify-center gap-4">
+                      <span className="text-3xl">💰</span>
+                      <span className="font-semibold text-xl">Larger cash prize</span>
+                    </li>
+                    <li className="flex items-center justify-center gap-4">
+                      <span className="text-3xl">📜</span>
+                      <span className="font-semibold text-xl">Official certificates</span>
+                    </li>
+                    <li className="flex items-center justify-center gap-4">
+                      <span className="text-3xl">🏆</span>
+                      <span className="font-semibold text-xl">Bragging rights!</span>
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            <motion.div variants={fadeInUp}>
+              <Card className="h-full bg-gradient-to-br from-gray-600 via-gray-700 to-gray-800 border-0 shadow-2xl hover:shadow-gray-500/25 transition-all duration-500">
+                <CardHeader className="text-center pb-6">
+                  <div className="w-32 h-32 mx-auto bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mb-8 relative">
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-red-600 rounded-full animate-pulse"></div>
+                    <span className="relative text-6xl font-bold text-white">2</span>
+                  </div>
+                  <CardTitle className="text-4xl text-white font-bold mb-4">Runner-Up</CardTitle>
+                </CardHeader>
+                <CardContent className="text-center">
+                  <ul className="space-y-4 text-white">
+                    <li className="flex items-center justify-center gap-4">
+                      <span className="text-3xl">💰</span>
+                      <span className="font-semibold text-xl">Cash prize</span>
+                    </li>
+                    <li className="flex items-center justify-center gap-4">
+                      <span className="text-3xl">📜</span>
+                      <span className="font-semibold text-xl">Official certificates</span>
+                    </li>
+                    <li className="flex items-center justify-center gap-4">
+                      <span className="text-3xl">⭐</span>
+                      <span className="font-semibold text-xl">Recognition!</span>
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Implementation Guarantee Section */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-800 to-gray-900 border border-blue-500/20 relative">
+        <div className="absolute inset-0 bg-gradient-to-r from-green-600/10 to-blue-600/10"></div>
+        <div className="max-w-5xl mx-auto relative z-10">
+          <motion.div 
+            className="text-center"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <motion.div
+              className="w-32 h-32 mx-auto bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center mb-8 shadow-2xl"
+              whileHover={{
+                scale: 1.1,
+                rotate: 360,
+                transition: { duration: 0.5 },
+              }}
+            >
+              <Lightbulb className="h-16 w-16 text-white" />
+            </motion.div>
+            <GradientText className="text-4xl sm:text-5xl font-bold mb-6 text-green-400" animate={false}>
+              💡 Implementation Guarantee
+            </GradientText>
+            <p className="text-2xl text-white mb-8 max-w-3xl mx-auto leading-relaxed">
+              Winning solutions will be implemented within <strong className="text-green-400">2 months</strong> post-hackathon - your ideas will become reality!
+            </p>
+            <Badge className="bg-gradient-to-r from-green-900 to-green-800 text-green-200 text-xl px-8 py-3 border border-green-500/30">
+              Real Impact
+            </Badge>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Get Involved Section */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 relative">
+        <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent"></div>
+        <div className="max-w-7xl mx-auto relative z-10">
+          <motion.div 
+            className="text-center mb-20"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <div className="flex items-center justify-center gap-4 mb-6">
+              <div className="w-12 h-12 bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg">
+                <Rocket className="h-6 w-6 text-white" />
+              </div>
+              <h2 className="text-4xl sm:text-5xl font-bold text-white drop-shadow-lg">
+                Ready to Get Involved?
+              </h2>
+            </div>
+            <p className="text-xl text-white max-w-3xl mx-auto leading-relaxed font-semibold drop-shadow-sm">
+              There&apos;s a role for everyone in making AlgoRhythm a success.
+            </p>
+          </motion.div>
+
+          <motion.div 
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
+            <motion.div variants={fadeInUp}>
+              <Card className="h-full bg-gradient-to-br from-gray-800/90 to-gray-900/90 backdrop-blur-sm border border-blue-500/30 hover:border-blue-500/60 hover:shadow-2xl transition-all duration-500 group">
+                <CardHeader className="text-center">
+                  <div className="w-20 h-20 mx-auto bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <span className="text-3xl">📝</span>
+                  </div>
+                  <CardTitle className="text-xl text-white mb-2 font-bold">Employees</CardTitle>
+                  <p className="text-gray-200 text-sm font-medium">Join the innovation revolution!</p>
+                </CardHeader>
+                <CardContent className="text-center">
+                  <Button className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 rounded-xl font-semibold py-3 shadow-lg">
+                    <Users className="h-5 w-5 mr-2" />
+                    Register Here
+                  </Button>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            <motion.div variants={fadeInUp}>
+              <Card className="h-full bg-gradient-to-br from-gray-800/90 to-gray-900/90 backdrop-blur-sm border border-red-500/30 hover:border-red-500/60 hover:shadow-2xl transition-all duration-500 group">
+                <CardHeader className="text-center">
+                  <div className="w-20 h-20 mx-auto bg-gradient-to-br from-red-600 to-red-700 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <Target className="h-10 w-10 text-white" />
+                  </div>
+                  <CardTitle className="text-xl text-white mb-2 font-bold">Leadership</CardTitle>
+                  <p className="text-gray-200 text-sm font-medium">Contribute to the Idea Pool</p>
+                </CardHeader>
+                <CardContent className="text-center">
+                  <Button className="w-full bg-gradient-to-r from-red-600 to-red-700 text-white hover:from-red-700 hover:to-red-800 rounded-xl font-semibold py-3 shadow-lg">
+                    <Target className="h-5 w-5 mr-2" />
+                    Add Ideas
+                  </Button>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            <motion.div variants={fadeInUp}>
+              <Card className="h-full bg-gradient-to-br from-gray-800/90 to-gray-900/90 backdrop-blur-sm border border-pink-500/30 hover:border-pink-500/60 hover:shadow-2xl transition-all duration-500 group">
+                <CardHeader className="text-center">
+                  <div className="w-20 h-20 mx-auto bg-gradient-to-br from-pink-600 to-pink-700 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <Brain className="h-10 w-10 text-white" />
+                  </div>
+                  <CardTitle className="text-xl text-white mb-2 font-bold">AI Mentors</CardTitle>
+                  <p className="text-gray-200 text-sm font-medium">Guide teams to success!</p>
+                </CardHeader>
+                <CardContent className="text-center">
+                  <Button className="w-full bg-gradient-to-r from-pink-600 to-pink-700 text-white hover:from-pink-700 hover:to-pink-800 rounded-xl font-semibold py-3 shadow-lg">
+                    <Brain className="h-5 w-5 mr-2" />
+                    Join Mentorship
+                  </Button>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            <motion.div variants={fadeInUp}>
+              <Card className="h-full bg-gradient-to-br from-gray-800/90 to-gray-900/90 backdrop-blur-sm border border-yellow-500/30 hover:border-yellow-500/60 hover:shadow-2xl transition-all duration-500 group">
+                <CardHeader className="text-center">
+                  <div className="w-20 h-20 mx-auto bg-gradient-to-br from-yellow-500 to-orange-500 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <Star className="h-10 w-10 text-white" />
+                  </div>
+                  <CardTitle className="text-xl text-white mb-2 font-bold">Brownie Points</CardTitle>
+                  <p className="text-gray-200 text-sm font-medium">Share your journey!</p>
+                </CardHeader>
+                <CardContent className="text-center">
+                  <Button className="w-full bg-gradient-to-r from-yellow-500 to-orange-500 text-white hover:from-yellow-600 hover:to-orange-600 rounded-xl font-semibold py-3 shadow-lg">
+                    <Share2 className="h-5 w-5 mr-2" />
+                    Share Journey
+                  </Button>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </motion.div>
+
+          {/* Social Sharing */}
+          <motion.div 
+            className="mt-16 text-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <div className="flex items-center justify-center gap-4 text-white bg-white/10 backdrop-blur-sm rounded-2xl px-8 py-6 inline-flex shadow-2xl">
+              <MessageSquare className="h-6 w-6 text-blue-200" />
+              <Linkedin className="h-6 w-6 text-blue-200" />
+              <span className="text-lg">Share your #AlgoRhythm journey on Slack and LinkedIn for extra recognition and brownie points!</span>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Future Starts Now Section */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-black to-gray-900 relative">
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 to-purple-600/5"></div>
+        <div className="max-w-5xl mx-auto text-center relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <div className="flex items-center justify-center gap-4 mb-8">
+              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
+                <span className="text-4xl">🎉</span>
+              </div>
+              <GradientText className="text-4xl sm:text-5xl font-bold" animate={false}>
+                The Future Starts Now
+              </GradientText>
+            </div>
+            <p className="text-2xl text-gray-300 mb-10 max-w-4xl mx-auto leading-relaxed">
+              This isn&apos;t just a hackathon - it&apos;s a launchpad for the next chapter of innovation at BEST. Your ideas today become our solutions tomorrow. Together, we&apos;re not just participating in change; we&apos;re creating it!
+            </p>
+            <p className="text-xl text-blue-400 mb-10 font-semibold">
+              Ready to solve today&apos;s challenges for a smarter tomorrow? The rhythm of innovation starts with YOU! 🎵🤖
+            </p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <Badge className="bg-gradient-to-r from-blue-900 to-blue-800 text-blue-200 px-6 py-3 text-lg border border-blue-500/30">#AlgoRhythm</Badge>
+              <Badge className="bg-gradient-to-r from-purple-900 to-purple-800 text-purple-200 px-6 py-3 text-lg border border-purple-500/30">#InnovateWithAI</Badge>
+              <Badge className="bg-gradient-to-r from-green-900 to-green-800 text-green-200 px-6 py-3 text-lg border border-green-500/30">#BESTSolutions</Badge>
+              <Badge className="bg-gradient-to-r from-orange-900 to-orange-800 text-orange-200 px-6 py-3 text-lg border border-orange-500/30">#AIHackathon</Badge>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+      <ScrollToTop />
     </div>
   );
 }
