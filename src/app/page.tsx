@@ -22,7 +22,9 @@ import {
   Star as StarIcon,
   Linkedin,
   Calendar,
-  ArrowRight
+  ArrowRight,
+  Check,
+  Copy
 } from "lucide-react";
 import { ScrollToTop } from "@/components/ui/scroll-to-top";
 
@@ -36,6 +38,27 @@ import { HeroBackground } from "@/components/ui/hero-background";
 
 export default function Home() {
   const [showAllProblems, setShowAllProblems] = useState(false);
+  const [showShareModal, setShowShareModal] = useState(false);
+  const [copiedToClipboard, setCopiedToClipboard] = useState(false);
+
+  const linkedInMessage = `🚀 Excited to be part of AlgoRhythm - BEST's AI Hackathon! 
+
+I'm joining 20+ teams to solve real business challenges using AI, competing for ₹50K in prizes, and most importantly - seeing our solutions implemented within 2 months!
+
+Ready to transform challenges into opportunities and build innovative solutions that will shape the future of BEST! 
+
+#AlgoRhythm #InnovateWithAI #BESTSolutions #AIHackathon #SolvingTomorrowToday`;
+
+  const handleCopyToClipboard = () => {
+    navigator.clipboard.writeText(linkedInMessage);
+    setCopiedToClipboard(true);
+    setTimeout(() => setCopiedToClipboard(false), 2000);
+  };
+
+  const handleShareToLinkedIn = () => {
+    const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent('https://forms.gle/jdCXcczhZK59gqY6A')}&summary=${encodeURIComponent(linkedInMessage)}`;
+    window.open(linkedInUrl, '_blank');
+  };
 
   const fadeInUp = {
     initial: { opacity: 0, y: 60 },
@@ -241,7 +264,7 @@ export default function Home() {
             transition={{ delay: 0.2, duration: 0.6 }}
           >
             <Calendar className="h-5 w-5" />
-            <span className="font-semibold">August 20-22, 2025</span>
+            <span className="font-semibold">September 23-25, 2025</span>
           </motion.div>
 
           <GradientText 
@@ -269,26 +292,13 @@ export default function Home() {
             🎯 Get ready to unleash your creativity! AlgoRhythm is here to foster innovation, solve real-world business problems within BEST, and enhance cross-functional collaboration using the power of AI.
           </motion.p>
 
-          {/* <motion.div
-            className="mb-10"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.6, duration: 0.8 }}
-          >
-            <img 
-              src="/razorpay-logo.svg" 
-              alt="Razorpay" 
-              className="h-16 mx-auto opacity-90 hover:opacity-100 transition-opacity"
-            />
-          </motion.div> */}
-
           <motion.div
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.7, duration: 0.8 }}
           >
-            <GlowingButton>
+            <GlowingButton onClick={() => window.open('https://forms.gle/jdCXcczhZK59gqY6A', '_blank')}>
               Register Now
             </GlowingButton>
           </motion.div>
@@ -423,7 +433,7 @@ export default function Home() {
                     <Badge className="bg-blue-900/50 text-blue-200 border border-blue-500/30">Data Accessibility</Badge>
                   </div>
                   <CardTitle className="text-xl text-white group-hover:text-orange-400 transition-colors">
-                                         The &quot;Ask Me Anything&quot; Data Bot
+                    The &quot;Ask Me Anything&quot; Data Bot
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -1010,7 +1020,10 @@ export default function Home() {
                   <p className="text-gray-200 text-sm font-medium">Join the innovation revolution!</p>
                 </CardHeader>
                 <CardContent className="text-center">
-                  <Button className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 rounded-xl font-semibold py-3 shadow-lg">
+                  <Button 
+                    onClick={() => window.open('https://forms.gle/jdCXcczhZK59gqY6A', '_blank')}
+                    className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 rounded-xl font-semibold py-3 shadow-lg"
+                  >
                     <Users className="h-5 w-5 mr-2" />
                     Register Here
                   </Button>
@@ -1064,7 +1077,10 @@ export default function Home() {
                   <p className="text-gray-200 text-sm font-medium">Share your journey!</p>
                 </CardHeader>
                 <CardContent className="text-center">
-                  <Button className="w-full bg-gradient-to-r from-yellow-500 to-orange-500 text-white hover:from-yellow-600 hover:to-orange-600 rounded-xl font-semibold py-3 shadow-lg">
+                  <Button 
+                    onClick={() => setShowShareModal(true)}
+                    className="w-full bg-gradient-to-r from-yellow-500 to-orange-500 text-white hover:from-yellow-600 hover:to-orange-600 rounded-xl font-semibold py-3 shadow-lg"
+                  >
                     <Share2 className="h-5 w-5 mr-2" />
                     Share Journey
                   </Button>
@@ -1124,6 +1140,72 @@ export default function Home() {
         </div>
       </section>
       <ScrollToTop />
+
+      {/* Share Modal */}
+      <AnimatePresence>
+        {showShareModal && (
+          <motion.div
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center px-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setShowShareModal(false)}
+          >
+            <motion.div
+              className="bg-gradient-to-br from-gray-800 to-gray-900 border border-yellow-500/30 rounded-2xl p-8 max-w-2xl w-full shadow-2xl"
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ type: "spring", duration: 0.5 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-2xl font-bold text-white">Share Your AlgoRhythm Journey!</h3>
+                <button
+                  onClick={() => setShowShareModal(false)}
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  ✕
+                </button>
+              </div>
+              
+              <div className="bg-gray-900/50 border border-gray-700 rounded-xl p-4 mb-6">
+                <p className="text-gray-300 whitespace-pre-wrap text-sm">{linkedInMessage}</p>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button
+                  onClick={handleCopyToClipboard}
+                  className="flex-1 bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800 text-white font-semibold py-3 rounded-xl shadow-lg transition-all duration-300"
+                >
+                  {copiedToClipboard ? (
+                    <>
+                      <Check className="h-5 w-5 mr-2" />
+                      Copied!
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="h-5 w-5 mr-2" />
+                      Copy to Clipboard
+                    </>
+                  )}
+                </Button>
+                <Button
+                  onClick={handleShareToLinkedIn}
+                  className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-3 rounded-xl shadow-lg transition-all duration-300"
+                >
+                  <Linkedin className="h-5 w-5 mr-2" />
+                  Share on LinkedIn
+                </Button>
+              </div>
+
+              <p className="text-center text-gray-400 text-sm mt-6">
+                Earn brownie points by sharing your excitement for AlgoRhythm! 🏆
+              </p>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
