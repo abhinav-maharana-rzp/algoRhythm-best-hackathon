@@ -1398,8 +1398,8 @@ Ready to transform challenges into opportunities and build innovative solutions 
                   <div className="w-20 h-20 mx-auto bg-gradient-to-br from-pink-600 to-pink-700 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                     <Brain className="h-10 w-10 text-white" />
                   </div>
-                  <CardTitle className="text-xl text-white mb-2 font-bold">AI Mentors</CardTitle>
-                  <p className="text-gray-200 text-sm font-medium">Guide teams to success!</p>
+                  <CardTitle className="text-xl text-white mb-2 font-bold">Stay in the Loop</CardTitle>
+                  <p className="text-gray-200 text-sm font-medium">Join the Slack for updates and announcements.</p>
                 </CardHeader>
                 <CardContent className="text-center">
                   <Button 
