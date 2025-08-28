@@ -43,7 +43,7 @@ export default function Home() {
 
   const linkedInMessage = `🚀 Excited to be part of AlgoRhythm - BEST's AI Hackathon! 
 
-I'm joining 20+ teams to solve real business challenges using AI, competing for ₹50K in prizes, and most importantly - seeing our solutions implemented within 2 months!
+I'm joining 20+ teams to solve real business challenges using AI, competing for ₹60K in prizes, and most importantly - seeing our solutions implemented within 2 months!
 
 Ready to transform challenges into opportunities and build innovative solutions that will shape the future of BEST! 
 
@@ -311,7 +311,7 @@ Ready to transform challenges into opportunities and build innovative solutions 
             transition={{ delay: 0.8, duration: 0.8 }}
           >
             <div className="text-center">
-              <div className="text-3xl font-bold text-blue-400 mb-2">20+</div>
+              <div className="text-3xl font-bold text-blue-400 mb-2">23</div>
               <div className="text-gray-400 text-sm">Challenges</div>
             </div>
             <div className="text-center">
@@ -323,7 +323,7 @@ Ready to transform challenges into opportunities and build innovative solutions 
               <div className="text-gray-400 text-sm">Rounds</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-orange-400 mb-2">₹50K</div>
+              <div className="text-3xl font-bold text-orange-400 mb-2">₹60K</div>
               <div className="text-gray-400 text-sm">Prize Pool</div>
             </div>
           </motion.div>
@@ -350,34 +350,203 @@ Ready to transform challenges into opportunities and build innovative solutions 
               </GradientText>
             </div>
             <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
-              Choose from 20 real-time business challenges designed by BEST leaders. Each problem addresses critical needs across Merchant Experience, Team Efficiency, Data Accessibility, and Transparency to OKRs.
+              Choose from 23 real-time business challenges designed by BEST leaders. Each problem addresses critical needs across Merchant Experience, Team Efficiency, Data Accessibility, and Transparency to OKRs.
             </p>
           </motion.div>
 
-          <motion.div 
-            className="grid lg:grid-cols-2 gap-8 mb-12"
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="animate"
+          {/* Top 5 Priority Problems Section */}
+          <motion.div
+            className="mb-20"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            {/* Sample Problem Statements - First 6 */}
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center gap-3 bg-gradient-to-r from-yellow-900/30 to-orange-900/30 border border-yellow-500/50 rounded-full px-8 py-4 mb-6">
+                <Trophy className="h-6 w-6 text-yellow-400" />
+                <span className="text-xl font-bold text-yellow-400">Top 5 Priority Challenges</span>
+                <Star className="h-6 w-6 text-yellow-400" />
+              </div>
+              <p className="text-lg text-gray-300 max-w-3xl mx-auto">
+                Solve these high-priority challenges to earn <span className="text-yellow-400 font-bold">additional brownie points</span> and make the maximum impact!
+              </p>
+            </div>
+
+            <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-8">
+              {/* Top Problem 1 */}
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.2 }}
+              >
+                <Card className="h-full bg-gradient-to-br from-yellow-900/20 to-gray-900 border-2 border-yellow-500/50 hover:border-yellow-400 hover:shadow-2xl hover:shadow-yellow-500/20 transition-all duration-500 relative overflow-hidden">
+                  <div className="absolute top-0 right-0 bg-gradient-to-bl from-yellow-500 to-orange-500 text-white px-4 py-2 rounded-bl-xl">
+                    <Star className="h-4 w-4 inline mr-1" />
+                    <span className="text-sm font-bold">PRIORITY</span>
+                  </div>
+                  <CardHeader className="pt-12">
+                    <div className="flex items-center justify-between mb-4">
+                      <Badge className="bg-yellow-900/50 text-yellow-200 border border-yellow-500/30 text-lg px-3 py-1">#2</Badge>
+                      <Badge className="bg-blue-900/50 text-blue-200 border border-blue-500/30">Team Efficiency</Badge>
+                    </div>
+                    <CardTitle className="text-xl text-white">
+                      Automated Knowledge Base Creation
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-gray-300 text-base leading-relaxed">
+                      An MVC model to automatically pick up unique issues across FD, Slack, DevRev and create both internal and external knowledge bases. AI should create SOPs automatically at issue category level.
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+
+              {/* Top Problem 2 */}
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.2 }}
+              >
+                <Card className="h-full bg-gradient-to-br from-yellow-900/20 to-gray-900 border-2 border-yellow-500/50 hover:border-yellow-400 hover:shadow-2xl hover:shadow-yellow-500/20 transition-all duration-500 relative overflow-hidden">
+                  <div className="absolute top-0 right-0 bg-gradient-to-bl from-yellow-500 to-orange-500 text-white px-4 py-2 rounded-bl-xl">
+                    <Star className="h-4 w-4 inline mr-1" />
+                    <span className="text-sm font-bold">PRIORITY</span>
+                  </div>
+                  <CardHeader className="pt-12">
+                    <div className="flex items-center justify-between mb-4">
+                      <Badge className="bg-yellow-900/50 text-yellow-200 border border-yellow-500/30 text-lg px-3 py-1">#6</Badge>
+                      <Badge className="bg-purple-900/50 text-purple-200 border border-purple-500/30">Real-time Monitoring</Badge>
+                    </div>
+                    <CardTitle className="text-xl text-white">
+                      Automate SR Monitoring
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-gray-300 text-base leading-relaxed">
+                      Automate Service Request monitoring through intelligent anomaly detection and real-time alerts to proactively identify and resolve issues.
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+
+              {/* Top Problem 3 */}
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.2 }}
+              >
+                <Card className="h-full bg-gradient-to-br from-yellow-900/20 to-gray-900 border-2 border-yellow-500/50 hover:border-yellow-400 hover:shadow-2xl hover:shadow-yellow-500/20 transition-all duration-500 relative overflow-hidden">
+                  <div className="absolute top-0 right-0 bg-gradient-to-bl from-yellow-500 to-orange-500 text-white px-4 py-2 rounded-bl-xl">
+                    <Star className="h-4 w-4 inline mr-1" />
+                    <span className="text-sm font-bold">PRIORITY</span>
+                  </div>
+                  <CardHeader className="pt-12">
+                    <div className="flex items-center justify-between mb-4">
+                      <Badge className="bg-yellow-900/50 text-yellow-200 border border-yellow-500/30 text-lg px-3 py-1">#10</Badge>
+                      <Badge className="bg-green-900/50 text-green-200 border border-green-500/30">Team Efficiency</Badge>
+                    </div>
+                    <CardTitle className="text-xl text-white">
+                      Slack Bot for Sales Solutions
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-gray-300 text-base leading-relaxed">
+                      A dedicated AI-powered Slack bot that acts as first line of defense for sales inquiries, retrieving answers from internal knowledge base and routing complex queries to experts.
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+
+              {/* Top Problem 4 */}
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.2 }}
+              >
+                <Card className="h-full bg-gradient-to-br from-yellow-900/20 to-gray-900 border-2 border-yellow-500/50 hover:border-yellow-400 hover:shadow-2xl hover:shadow-yellow-500/20 transition-all duration-500 relative overflow-hidden">
+                  <div className="absolute top-0 right-0 bg-gradient-to-bl from-yellow-500 to-orange-500 text-white px-4 py-2 rounded-bl-xl">
+                    <Star className="h-4 w-4 inline mr-1" />
+                    <span className="text-sm font-bold">PRIORITY</span>
+                  </div>
+                  <CardHeader className="pt-12">
+                    <div className="flex items-center justify-between mb-4">
+                      <Badge className="bg-yellow-900/50 text-yellow-200 border border-yellow-500/30 text-lg px-3 py-1">#14</Badge>
+                      <Badge className="bg-orange-900/50 text-orange-200 border border-orange-500/30">Team Efficiency</Badge>
+                    </div>
+                    <CardTitle className="text-xl text-white">
+                      Ripplit Bot for Issue Resolution
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-gray-300 text-base leading-relaxed">
+                      AI-powered bot acting as a layer between customers and tech support, suggesting debugging steps from KB and documentation. Includes Log Analyzer for automated debugging.
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+
+              {/* Top Problem 5 */}
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.2 }}
+                className="lg:col-span-2 xl:col-span-1"
+              >
+                <Card className="h-full bg-gradient-to-br from-yellow-900/20 to-gray-900 border-2 border-yellow-500/50 hover:border-yellow-400 hover:shadow-2xl hover:shadow-yellow-500/20 transition-all duration-500 relative overflow-hidden">
+                  <div className="absolute top-0 right-0 bg-gradient-to-bl from-yellow-500 to-orange-500 text-white px-4 py-2 rounded-bl-xl">
+                    <Star className="h-4 w-4 inline mr-1" />
+                    <span className="text-sm font-bold">PRIORITY</span>
+                  </div>
+                  <CardHeader className="pt-12">
+                    <div className="flex items-center justify-between mb-4">
+                      <Badge className="bg-yellow-900/50 text-yellow-200 border border-yellow-500/30 text-lg px-3 py-1">#28</Badge>
+                      <Badge className="bg-red-900/50 text-red-200 border border-red-500/30">Merchant Experience</Badge>
+                    </div>
+                    <CardTitle className="text-xl text-white">
+                      Merchant Health Dashboard
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-gray-300 text-base leading-relaxed">
+                      Centralized dashboard providing holistic view of merchant health with Red/Amber/Green status. Early warning system to proactively identify at-risk merchants and growth opportunities.
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            </div>
+          </motion.div>
+
+          {/* Additional Problem Statements */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <div className="text-center mb-12">
+              <h3 className="text-2xl font-bold text-white mb-4">Additional Challenge Pool</h3>
+              <p className="text-gray-400">18 more exciting challenges to choose from</p>
+            </div>
+
+            <motion.div 
+              className="grid lg:grid-cols-2 gap-8 mb-12"
+              variants={staggerContainer}
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true }}
+            >
+            {/* Sample Additional Problem Statements - First 6 */}
             <motion.div variants={fadeInUp}>
               <Card className="h-full bg-gradient-to-br from-gray-800 to-gray-900 border border-blue-500/30 hover:border-blue-500/60 hover:shadow-2xl transition-all duration-500 group">
                 <CardHeader>
                   <div className="flex items-center justify-between mb-4">
-                    <Badge className="bg-blue-900/50 text-blue-200 border border-blue-500/30">#6</Badge>
+                    <Badge className="bg-blue-900/50 text-blue-200 border border-blue-500/30">#1</Badge>
                     <Badge className="bg-green-900/50 text-green-200 border border-green-500/30">Merchant Experience</Badge>
                   </div>
                   <CardTitle className="text-xl text-white group-hover:text-blue-400 transition-colors">
-                    The One-Click Audit Tool
+                    Redefining Test Mode
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-gray-300 text-base leading-relaxed mb-4">
-                    Build an enhanced test mode that simulates all product features, payment methods, and user journeys. The tool should run automated tests against an MID, check for integration breakages, and suggest code-level fixes.
+                    Enhanced test mode that encompasses all product features, payment methods, and user journeys. Includes one-click audit tool with integration breakage detection and code-level fix suggestions.
                   </p>
-                  
                 </CardContent>
               </Card>
             </motion.div>
@@ -386,18 +555,17 @@ Ready to transform challenges into opportunities and build innovative solutions 
               <Card className="h-full bg-gradient-to-br from-gray-800 to-gray-900 border border-purple-500/30 hover:border-purple-500/60 hover:shadow-2xl transition-all duration-500 group">
                 <CardHeader>
                   <div className="flex items-center justify-between mb-4">
-                    <Badge className="bg-purple-900/50 text-purple-200 border border-purple-500/30">#7</Badge>
+                    <Badge className="bg-purple-900/50 text-purple-200 border border-purple-500/30">#3</Badge>
                     <Badge className="bg-orange-900/50 text-orange-200 border border-orange-500/30">Transparency to OKRs</Badge>
                   </div>
                   <CardTitle className="text-xl text-white group-hover:text-purple-400 transition-colors">
-                    The Automated Metric Board
+                    Automated Metric Board
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-gray-300 text-base leading-relaxed mb-4">
-                    Create a single dashboard that pulls performance metrics (CCNR, SDR, NPS, MHI) from various sources. The AI component should analyze trends and suggest actionable steps for improvement.
+                    Single dashboard pulling performance metrics (CCNR, SDR, NPS, MHI) from various sources. AI provides insights on metric changes and suggests improvement steps.
                   </p>
-                  
                 </CardContent>
               </Card>
             </motion.div>
@@ -406,21 +574,17 @@ Ready to transform challenges into opportunities and build innovative solutions 
               <Card className="h-full bg-gradient-to-br from-gray-800 to-gray-900 border border-green-500/30 hover:border-green-500/60 hover:shadow-2xl transition-all duration-500 group">
                 <CardHeader>
                   <div className="flex items-center justify-between mb-4">
-                    <Badge className="bg-green-900/50 text-green-200 border border-green-500/30">#8</Badge>
-                    <div className="flex gap-2">
-                      <Badge className="bg-blue-900/50 text-blue-200 border border-blue-500/30 text-xs">Team Efficiency</Badge>
-                      <Badge className="bg-green-900/50 text-green-200 border border-green-500/30 text-xs">Merchant Experience</Badge>
-                    </div>
+                    <Badge className="bg-green-900/50 text-green-200 border border-green-500/30">#4</Badge>
+                    <Badge className="bg-blue-900/50 text-blue-200 border border-blue-500/30">Team Efficiency</Badge>
                   </div>
                   <CardTitle className="text-xl text-white group-hover:text-green-400 transition-colors">
-                    The Survey Insight Engine
+                    Survey Analysis Board
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-gray-300 text-base leading-relaxed mb-4">
-                    Develop an AI algorithm to analyze survey feedback and automatically categorize it by reason, infer merchant use cases, and identify potential knowledge gaps in support processes.
+                    AI algorithm to analyze DSATs, MHI reductions, and NPS surveys. Infers merchant use cases, categorizes issues, and identifies learning gaps in support processes.
                   </p>
-                  
                 </CardContent>
               </Card>
             </motion.div>
@@ -429,18 +593,17 @@ Ready to transform challenges into opportunities and build innovative solutions 
               <Card className="h-full bg-gradient-to-br from-gray-800 to-gray-900 border border-orange-500/30 hover:border-orange-500/60 hover:shadow-2xl transition-all duration-500 group">
                 <CardHeader>
                   <div className="flex items-center justify-between mb-4">
-                    <Badge className="bg-orange-900/50 text-orange-200 border border-orange-500/30">#9</Badge>
+                    <Badge className="bg-orange-900/50 text-orange-200 border border-orange-500/30">#5</Badge>
                     <Badge className="bg-blue-900/50 text-blue-200 border border-blue-500/30">Data Accessibility</Badge>
                   </div>
                   <CardTitle className="text-xl text-white group-hover:text-orange-400 transition-colors">
-                    The &quot;Ask Me Anything&quot; Data Bot
+                    "Ask Me Anything" Data Bot
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-gray-300 text-base leading-relaxed mb-4">
-                    Build a Text-to-SQL bot that allows anyone to get real-time data by asking questions in natural language, without waiting for the analytics team.
+                    Text-to-SQL Slack bot for instant data access. Get accurate, real-time answers by simply asking questions in natural language, eliminating wait times.
                   </p>
-                  
                 </CardContent>
               </Card>
             </motion.div>
@@ -449,18 +612,17 @@ Ready to transform challenges into opportunities and build innovative solutions 
               <Card className="h-full bg-gradient-to-br from-gray-800 to-gray-900 border border-blue-500/30 hover:border-blue-500/60 hover:shadow-2xl transition-all duration-500 group">
                 <CardHeader>
                   <div className="flex items-center justify-between mb-4">
-                    <Badge className="bg-blue-900/50 text-blue-200 border border-blue-500/30">#10</Badge>
+                    <Badge className="bg-blue-900/50 text-blue-200 border border-blue-500/30">#7</Badge>
                     <Badge className="bg-green-900/50 text-green-200 border border-green-500/30">Team Efficiency</Badge>
                   </div>
                   <CardTitle className="text-xl text-white group-hover:text-blue-400 transition-colors">
-                    The Automated SR Analyst
+                    Quality of Analysis Automation
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-gray-300 text-base leading-relaxed mb-4">
-                    Build an algorithm that automates the entire Service Request analysis process, from data gathering to generating insights and summary reports.
+                    Algorithm that automates the entire Service Request analysis process, handling ~150 monthly analyses across teams with consistent quality.
                   </p>
-                  
                 </CardContent>
               </Card>
             </motion.div>
@@ -469,18 +631,17 @@ Ready to transform challenges into opportunities and build innovative solutions 
               <Card className="h-full bg-gradient-to-br from-gray-800 to-gray-900 border border-purple-500/30 hover:border-purple-500/60 hover:shadow-2xl transition-all duration-500 group">
                 <CardHeader>
                   <div className="flex items-center justify-between mb-4">
-                    <Badge className="bg-purple-900/50 text-purple-200 border border-purple-500/30">#11</Badge>
+                    <Badge className="bg-purple-900/50 text-purple-200 border border-purple-500/30">#8</Badge>
                     <Badge className="bg-green-900/50 text-green-200 border border-green-500/30">Team Efficiency</Badge>
                   </div>
                   <CardTitle className="text-xl text-white group-hover:text-purple-400 transition-colors">
-                    The Intelligent Gatekeeper
+                    Intelligent Request Gatekeeper
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-gray-300 text-base leading-relaxed mb-4">
-                    Create a bot that automatically verifies request validity and provides directional overview of where problems might lie and which team should handle them.
+                    Bot that verifies validity of thousands of incoming requests, provides directional overview of problems, and routes to appropriate teams automatically.
                   </p>
-                  
                 </CardContent>
               </Card>
             </motion.div>
@@ -498,12 +659,12 @@ Ready to transform challenges into opportunities and build innovative solutions 
               onClick={() => setShowAllProblems(!showAllProblems)}
               className="bg-gradient-to-r from-green-500 to-blue-600 hover:from-green-600 hover:to-blue-700 text-white font-bold px-10 py-5 text-xl rounded-2xl shadow-2xl hover:shadow-green-500/25 transition-all duration-300 transform hover:scale-105"
             >
-              {showAllProblems ? "Hide Problem Statements" : "View All 20 Problem Statements"}
+              {showAllProblems ? "Hide Additional Challenges" : "View All 18 Additional Challenges"}
               <ArrowRight className={`ml-3 h-6 w-6 transition-transform duration-300 ${showAllProblems ? 'rotate-90' : ''}`} />
             </Button>
           </motion.div>
 
-          {/* All Problem Statements Modal */}
+          {/* All Additional Problem Statements Modal */}
           <AnimatePresence>
             {showAllProblems && (
               <motion.div
@@ -514,72 +675,271 @@ Ready to transform challenges into opportunities and build innovative solutions 
                 className="mt-16"
               >
                 <div className="grid lg:grid-cols-2 gap-8">
-                  {allProblemStatements.map((problem, index) => {
-                    const colorClasses = {
-                      blue: {
-                        border: "border-blue-500/30 hover:border-blue-500/60",
-                        badge: "bg-blue-900/50 text-blue-200 border-blue-500/30",
-                        title: "group-hover:text-blue-400"
-                      },
-                      purple: {
-                        border: "border-purple-500/30 hover:border-purple-500/60",
-                        badge: "bg-purple-900/50 text-purple-200 border-purple-500/30",
-                        title: "group-hover:text-purple-400"
-                      },
-                      green: {
-                        border: "border-green-500/30 hover:border-green-500/60",
-                        badge: "bg-green-900/50 text-green-200 border-green-500/30",
-                        title: "group-hover:text-green-400"
-                      },
-                      orange: {
-                        border: "border-orange-500/30 hover:border-orange-500/60",
-                        badge: "bg-orange-900/50 text-orange-200 border-orange-500/30",
-                        title: "group-hover:text-orange-400"
-                      },
-                      red: {
-                        border: "border-red-500/30 hover:border-red-500/60",
-                        badge: "bg-red-900/50 text-red-200 border-red-500/30",
-                        title: "group-hover:text-red-400"
-                      }
-                    };
+                  {/* Additional problems 9-30 */}
+                  <motion.div
+                    variants={fadeInUp}
+                    initial="initial"
+                    animate="animate"
+                  >
+                    <Card className="h-full bg-gradient-to-br from-gray-800 to-gray-900 border border-blue-500/30 hover:border-blue-500/60 hover:shadow-2xl transition-all duration-500 group">
+                      <CardHeader>
+                        <Badge className="bg-blue-900/50 text-blue-200 border border-blue-500/30 mb-3">#9</Badge>
+                        <CardTitle className="text-lg text-white group-hover:text-blue-400 transition-colors">
+                          Solution Doc Creator
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <p className="text-gray-300 text-sm leading-relaxed">
+                          AI-powered tool automating structured solution document generation from CRM data, discovery calls, and product configurations.
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
 
-                    const colors = colorClasses[problem.color as keyof typeof colorClasses];
+                  <motion.div
+                    variants={fadeInUp}
+                    initial="initial"
+                    animate="animate"
+                  >
+                    <Card className="h-full bg-gradient-to-br from-gray-800 to-gray-900 border border-purple-500/30 hover:border-purple-500/60 hover:shadow-2xl transition-all duration-500 group">
+                      <CardHeader>
+                        <Badge className="bg-purple-900/50 text-purple-200 border border-purple-500/30 mb-3">#11</Badge>
+                        <CardTitle className="text-lg text-white group-hover:text-purple-400 transition-colors">
+                          Checklist Responder
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <p className="text-gray-300 text-sm leading-relaxed">
+                          AI tool that ingests merchant checklists and automatically suggests answers from internal knowledge base.
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
 
-                    return (
-                      <motion.div
-                        key={problem.id}
-                        variants={fadeInUp}
-                        initial="initial"
-                        animate="animate"
-                        transition={{ delay: index * 0.1 }}
-                      >
-                        <Card className={`h-full bg-gradient-to-br from-gray-800 to-gray-900 ${colors.border} hover:shadow-2xl transition-all duration-500 group`}>
-                          <CardHeader>
-                            <div className="flex items-center justify-between mb-4">
-                              <Badge className={`${colors.badge} border`}>
-                                {problem.number}
-                              </Badge>
-                              <Badge className={`${colors.badge} border`}>
-                                {problem.category}
-                              </Badge>
-                            </div>
-                            <CardTitle className={`text-xl text-white ${colors.title} transition-colors`}>
-                              {problem.title}
-                            </CardTitle>
-                          </CardHeader>
-                          <CardContent>
-                            <p className="text-gray-300 text-base leading-relaxed mb-4">
-                              {problem.description}
-                            </p>
-                          </CardContent>
-                        </Card>
-                      </motion.div>
-                    );
-                  })}
+                  <motion.div
+                    variants={fadeInUp}
+                    initial="initial"
+                    animate="animate"
+                  >
+                    <Card className="h-full bg-gradient-to-br from-gray-800 to-gray-900 border border-green-500/30 hover:border-green-500/60 hover:shadow-2xl transition-all duration-500 group">
+                      <CardHeader>
+                        <Badge className="bg-green-900/50 text-green-200 border border-green-500/30 mb-3">#15</Badge>
+                        <CardTitle className="text-lg text-white group-hover:text-green-400 transition-colors">
+                          POS Integration Automation
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <p className="text-gray-300 text-sm leading-relaxed">
+                          Solution for completing POS integration in a simulated environment, reducing time and device dependency.
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+
+                  <motion.div
+                    variants={fadeInUp}
+                    initial="initial"
+                    animate="animate"
+                  >
+                    <Card className="h-full bg-gradient-to-br from-gray-800 to-gray-900 border border-orange-500/30 hover:border-orange-500/60 hover:shadow-2xl transition-all duration-500 group">
+                      <CardHeader>
+                        <Badge className="bg-orange-900/50 text-orange-200 border border-orange-500/30 mb-3">#16</Badge>
+                        <CardTitle className="text-lg text-white group-hover:text-orange-400 transition-colors">
+                          Weekly AI Emailer
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <p className="text-gray-300 text-sm leading-relaxed">
+                          AI-powered emailer sending TAM merchants actionable weekly insights on performance trends and open issues.
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+
+                  <motion.div
+                    variants={fadeInUp}
+                    initial="initial"
+                    animate="animate"
+                  >
+                    <Card className="h-full bg-gradient-to-br from-gray-800 to-gray-900 border border-red-500/30 hover:border-red-500/60 hover:shadow-2xl transition-all duration-500 group">
+                      <CardHeader>
+                        <Badge className="bg-red-900/50 text-red-200 border border-red-500/30 mb-3">#17</Badge>
+                        <CardTitle className="text-lg text-white group-hover:text-red-400 transition-colors">
+                          ZERO Touch Integration
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <p className="text-gray-300 text-sm leading-relaxed">
+                          AI-powered self-serve system enabling SME merchants to go live with payments in minutes without human intervention.
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+
+                  <motion.div
+                    variants={fadeInUp}
+                    initial="initial"
+                    animate="animate"
+                  >
+                    <Card className="h-full bg-gradient-to-br from-gray-800 to-gray-900 border border-blue-500/30 hover:border-blue-500/60 hover:shadow-2xl transition-all duration-500 group">
+                      <CardHeader>
+                        <Badge className="bg-blue-900/50 text-blue-200 border border-blue-500/30 mb-3">#18</Badge>
+                        <CardTitle className="text-lg text-white group-hover:text-blue-400 transition-colors">
+                          Service Volume Trend Analysis
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <p className="text-gray-300 text-sm leading-relaxed">
+                          AI-driven analysis to identify patterns and predict service volume trends for better resource allocation.
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+
+                  <motion.div
+                    variants={fadeInUp}
+                    initial="initial"
+                    animate="animate"
+                  >
+                    <Card className="h-full bg-gradient-to-br from-gray-800 to-gray-900 border border-purple-500/30 hover:border-purple-500/60 hover:shadow-2xl transition-all duration-500 group">
+                      <CardHeader>
+                        <Badge className="bg-purple-900/50 text-purple-200 border border-purple-500/30 mb-3">#20</Badge>
+                        <CardTitle className="text-lg text-white group-hover:text-purple-400 transition-colors">
+                          AI-Powered Quality Tool
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <p className="text-gray-300 text-sm leading-relaxed">
+                          Analyzing ticket quality through AI to ensure consistent, high-quality support responses.
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+
+                  <motion.div
+                    variants={fadeInUp}
+                    initial="initial"
+                    animate="animate"
+                  >
+                    <Card className="h-full bg-gradient-to-br from-gray-800 to-gray-900 border border-green-500/30 hover:border-green-500/60 hover:shadow-2xl transition-all duration-500 group">
+                      <CardHeader>
+                        <Badge className="bg-green-900/50 text-green-200 border border-green-500/30 mb-3">#21</Badge>
+                        <CardTitle className="text-lg text-white group-hover:text-green-400 transition-colors">
+                          AI Calling Bot
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <p className="text-gray-300 text-sm leading-relaxed">
+                          AI solution for automated outbound calls as first touchpoint and on WOC cases to reduce resolution time.
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+
+                  <motion.div
+                    variants={fadeInUp}
+                    initial="initial"
+                    animate="animate"
+                  >
+                    <Card className="h-full bg-gradient-to-br from-gray-800 to-gray-900 border border-orange-500/30 hover:border-orange-500/60 hover:shadow-2xl transition-all duration-500 group">
+                      <CardHeader>
+                        <Badge className="bg-orange-900/50 text-orange-200 border border-orange-500/30 mb-3">#23</Badge>
+                        <CardTitle className="text-lg text-white group-hover:text-orange-400 transition-colors">
+                          RFP Genie
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <p className="text-gray-300 text-sm leading-relaxed">
+                          Tool to analyze and respond to RFPs, evaluate profitability models, and generate comprehensive responses.
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+
+                  <motion.div
+                    variants={fadeInUp}
+                    initial="initial"
+                    animate="animate"
+                  >
+                    <Card className="h-full bg-gradient-to-br from-gray-800 to-gray-900 border border-blue-500/30 hover:border-blue-500/60 hover:shadow-2xl transition-all duration-500 group">
+                      <CardHeader>
+                        <Badge className="bg-blue-900/50 text-blue-200 border border-blue-500/30 mb-3">#25</Badge>
+                        <CardTitle className="text-lg text-white group-hover:text-blue-400 transition-colors">
+                          Success Rate Workshop Automation
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <p className="text-gray-300 text-sm leading-relaxed">
+                          One-click generation of comprehensive Success Rate Workshop documents with insights and recommendations.
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+
+                  <motion.div
+                    variants={fadeInUp}
+                    initial="initial"
+                    animate="animate"
+                  >
+                    <Card className="h-full bg-gradient-to-br from-gray-800 to-gray-900 border border-purple-500/30 hover:border-purple-500/60 hover:shadow-2xl transition-all duration-500 group">
+                      <CardHeader>
+                        <Badge className="bg-purple-900/50 text-purple-200 border border-purple-500/30 mb-3">#26</Badge>
+                        <CardTitle className="text-lg text-white group-hover:text-purple-400 transition-colors">
+                          Smart Log Analyzer
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <p className="text-gray-300 text-sm leading-relaxed">
+                          Instantly reconstruct payment journey, pinpoint breakage, and provide actionable diagnosis from Payment ID.
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+
+                  <motion.div
+                    variants={fadeInUp}
+                    initial="initial"
+                    animate="animate"
+                  >
+                    <Card className="h-full bg-gradient-to-br from-gray-800 to-gray-900 border border-green-500/30 hover:border-green-500/60 hover:shadow-2xl transition-all duration-500 group">
+                      <CardHeader>
+                        <Badge className="bg-green-900/50 text-green-200 border border-green-500/30 mb-3">#27</Badge>
+                        <CardTitle className="text-lg text-white group-hover:text-green-400 transition-colors">
+                          Freshdesk Slack Bot
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <p className="text-gray-300 text-sm leading-relaxed">
+                          Intelligent Slack bot providing instant ticket summaries and status updates for cross-team visibility.
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+
+                  <motion.div
+                    variants={fadeInUp}
+                    initial="initial"
+                    animate="animate"
+                  >
+                    <Card className="h-full bg-gradient-to-br from-gray-800 to-gray-900 border border-orange-500/30 hover:border-orange-500/60 hover:shadow-2xl transition-all duration-500 group">
+                      <CardHeader>
+                        <Badge className="bg-orange-900/50 text-orange-200 border border-orange-500/30 mb-3">#30</Badge>
+                        <CardTitle className="text-lg text-white group-hover:text-orange-400 transition-colors">
+                          RCA Builder
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <p className="text-gray-300 text-sm leading-relaxed">
+                          AI tool trained on internal RCA formats to help teams create complete Root Cause Analysis within 30-40 minutes.
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
                 </div>
               </motion.div>
             )}
           </AnimatePresence>
+          </motion.div>
         </div>
       </section>
 
@@ -660,7 +1020,7 @@ Ready to transform challenges into opportunities and build innovative solutions 
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="text-center">
-                  <p className="text-gray-300 text-lg leading-relaxed">Choose from 20 real-time business challenges</p>
+                  <p className="text-gray-300 text-lg leading-relaxed">Choose from 23 real-time business challenges</p>
                 </CardContent>
               </Card>
             </InteractiveCard>
@@ -677,7 +1037,7 @@ Ready to transform challenges into opportunities and build innovative solutions 
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="text-center">
-                  <p className="text-gray-300 text-lg leading-relaxed">2 rounds + finale, top 5 teams advance</p>
+                  <p className="text-gray-300 text-lg leading-relaxed">2 rounds + Finale, top 5 teams advance</p>
                 </CardContent>
               </Card>
             </InteractiveCard>
@@ -737,7 +1097,7 @@ Ready to transform challenges into opportunities and build innovative solutions 
                   </motion.div>
                   <CardTitle className="text-xl text-white group-hover:text-blue-400 transition-colors mb-3">Innovation & AI Tool Usage</CardTitle>
                   <Badge className="w-fit mx-auto bg-blue-900/50 text-blue-200 border border-blue-500/30 text-lg px-4 py-2">
-                    <AnimatedCounter end={30} />%
+                    <AnimatedCounter end={30} />
                   </Badge>
                 </CardHeader>
                 <CardContent className="text-center">
@@ -767,7 +1127,7 @@ Ready to transform challenges into opportunities and build innovative solutions 
                   </motion.div>
                   <CardTitle className="text-xl text-white group-hover:text-purple-400 transition-colors mb-3">Impact & Feasibility</CardTitle>
                   <Badge className="w-fit mx-auto bg-purple-900/50 text-purple-200 border border-purple-500/30 text-lg px-4 py-2">
-                    <AnimatedCounter end={30} />%
+                    <AnimatedCounter end={30} />
                   </Badge>
                 </CardHeader>
                 <CardContent className="text-center">
@@ -797,7 +1157,7 @@ Ready to transform challenges into opportunities and build innovative solutions 
                   </motion.div>
                   <CardTitle className="text-xl text-white group-hover:text-green-400 transition-colors mb-3">Technical Execution</CardTitle>
                   <Badge className="w-fit mx-auto bg-green-900/50 text-green-200 border border-green-500/30 text-lg px-4 py-2">
-                    <AnimatedCounter end={25} />%
+                    <AnimatedCounter end={25} />
                   </Badge>
                 </CardHeader>
                 <CardContent className="text-center">
@@ -827,7 +1187,7 @@ Ready to transform challenges into opportunities and build innovative solutions 
                   </motion.div>
                   <CardTitle className="text-xl text-white group-hover:text-orange-400 transition-colors mb-3">Presentation & Storytelling</CardTitle>
                   <Badge className="w-fit mx-auto bg-orange-900/50 text-orange-200 border border-orange-500/30 text-lg px-4 py-2">
-                    <AnimatedCounter end={15} />%
+                    <AnimatedCounter end={15} />
                   </Badge>
                 </CardHeader>
                 <CardContent className="text-center">
@@ -899,7 +1259,7 @@ Ready to transform challenges into opportunities and build innovative solutions 
                   <ul className="space-y-4 text-white">
                     <li className="flex items-center justify-center gap-4">
                       <span className="text-3xl">💰</span>
-                      <span className="font-semibold text-xl">Larger cash prize</span>
+                      <span className="font-semibold text-xl">₹40,000 Cash Prize</span>
                     </li>
                     <li className="flex items-center justify-center gap-4">
                       <span className="text-3xl">📜</span>
@@ -927,7 +1287,7 @@ Ready to transform challenges into opportunities and build innovative solutions 
                   <ul className="space-y-4 text-white">
                     <li className="flex items-center justify-center gap-4">
                       <span className="text-3xl">💰</span>
-                      <span className="font-semibold text-xl">Cash prize</span>
+                      <span className="font-semibold text-xl">₹20,000 Cash Prize</span>
                     </li>
                     <li className="flex items-center justify-center gap-4">
                       <span className="text-3xl">📜</span>
@@ -1004,7 +1364,7 @@ Ready to transform challenges into opportunities and build innovative solutions 
           </motion.div>
 
           <motion.div 
-            className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
+            className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto"
             variants={staggerContainer}
             initial="initial"
             whileInView="animate"
@@ -1032,24 +1392,6 @@ Ready to transform challenges into opportunities and build innovative solutions 
             </motion.div>
 
             <motion.div variants={fadeInUp}>
-              <Card className="h-full bg-gradient-to-br from-gray-800/90 to-gray-900/90 backdrop-blur-sm border border-red-500/30 hover:border-red-500/60 hover:shadow-2xl transition-all duration-500 group">
-                <CardHeader className="text-center">
-                  <div className="w-20 h-20 mx-auto bg-gradient-to-br from-red-600 to-red-700 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                    <Target className="h-10 w-10 text-white" />
-                  </div>
-                  <CardTitle className="text-xl text-white mb-2 font-bold">Leadership</CardTitle>
-                  <p className="text-gray-200 text-sm font-medium">Contribute to the Idea Pool</p>
-                </CardHeader>
-                <CardContent className="text-center">
-                  <Button className="w-full bg-gradient-to-r from-red-600 to-red-700 text-white hover:from-red-700 hover:to-red-800 rounded-xl font-semibold py-3 shadow-lg">
-                    <Target className="h-5 w-5 mr-2" />
-                    Add Ideas
-                  </Button>
-                </CardContent>
-              </Card>
-            </motion.div>
-
-            <motion.div variants={fadeInUp}>
               <Card className="h-full bg-gradient-to-br from-gray-800/90 to-gray-900/90 backdrop-blur-sm border border-pink-500/30 hover:border-pink-500/60 hover:shadow-2xl transition-all duration-500 group">
                 <CardHeader className="text-center">
                   <div className="w-20 h-20 mx-auto bg-gradient-to-br from-pink-600 to-pink-700 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
@@ -1059,9 +1401,12 @@ Ready to transform challenges into opportunities and build innovative solutions 
                   <p className="text-gray-200 text-sm font-medium">Guide teams to success!</p>
                 </CardHeader>
                 <CardContent className="text-center">
-                  <Button className="w-full bg-gradient-to-r from-pink-600 to-pink-700 text-white hover:from-pink-700 hover:to-pink-800 rounded-xl font-semibold py-3 shadow-lg">
+                  <Button 
+                    onClick={() => window.open('https://join.slack.com/share/enQtOTQyMzAwODA3MzYyMi0zYWZlODE0MjU2MjM1ZWFiZTY0NjVlNjdmODY0MDhiODdlYjZkZmQ2Nzk5NTE0ZmMzNjAwODA2NGQ4ZTgwNjFj', '_blank')}
+                    className="w-full bg-gradient-to-r from-pink-600 to-pink-700 text-white hover:from-pink-700 hover:to-pink-800 rounded-xl font-semibold py-3 shadow-lg"
+                  >
                     <Brain className="h-5 w-5 mr-2" />
-                    Join Mentorship
+                    Join Slack Channel
                   </Button>
                 </CardContent>
               </Card>
