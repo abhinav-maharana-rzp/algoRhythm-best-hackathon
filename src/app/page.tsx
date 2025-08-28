@@ -267,6 +267,16 @@ Ready to transform challenges into opportunities and build innovative solutions 
             <span className="font-semibold">September 23-25, 2025</span>
           </motion.div>
 
+          {/* Razorpay Logo */}
+          <motion.div
+            className="mb-6"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.3, duration: 0.6 }}
+          >
+            <img src="/razorpaylogowhite.png" alt="Razorpay Logo" className="h-12 mx-auto" />
+          </motion.div>
+
           <GradientText 
             className="text-5xl sm:text-7xl lg:text-8xl font-bold mb-8"
             animate={true}
@@ -289,7 +299,7 @@ Ready to transform challenges into opportunities and build innovative solutions 
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.8 }}
           >
-            🎯 Get ready to unleash your creativity! AlgoRhythm is here to foster innovation, solve real-world business problems within BEST, and enhance cross-functional collaboration using the power of AI.
+            🎯 Get ready to unleash your creativity! AlgoRhythm is here to foster innovation, solve real-world business problems within BEST & Solutions, and enhance cross-functional collaboration using the power of AI.
           </motion.p>
 
           <motion.div
