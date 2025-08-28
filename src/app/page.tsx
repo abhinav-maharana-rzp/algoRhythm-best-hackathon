@@ -35,6 +35,7 @@ import { GlowingButton } from "@/components/ui/glowing-button";
 import { AnimatedCounter } from "@/components/ui/animated-counter";
 import { GradientText } from "@/components/ui/gradient-text";
 import { HeroBackground } from "@/components/ui/hero-background";
+import { ContainerTextFlip } from "@/components/ui/container-text-flip";
 
 export default function Home() {
   const [showAllProblems, setShowAllProblems] = useState(false);
@@ -343,6 +344,12 @@ Ready to transform challenges into opportunities and build innovative solutions 
       {/* Problem Statement Pool Section */}
       <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-900 to-black relative">
         <div className="absolute inset-0 bg-gradient-to-r from-green-600/5 to-blue-600/5"></div>
+        <section className="flex items-center justify-center px-4 sm:px-6 lg:px-8">
+        <ContainerTextFlip
+          className="w-full flex justify-center my-20"
+          words={["Experience is paramount at BEST", "Experience is paramount at BEST", "Experience is paramount at BEST", "Experience is paramount at BEST"]}
+        />
+      </section>
         <div className="max-w-7xl mx-auto relative z-10">
           <motion.div 
             className="text-center mb-20"
@@ -1205,22 +1212,6 @@ Ready to transform challenges into opportunities and build innovative solutions 
                 </CardContent>
               </Card>
             </motion.div>
-          </motion.div>
-
-          {/* Experience Motto */}
-          <motion.div 
-            className="mt-16 text-center"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <div className="inline-flex items-center gap-4 bg-gradient-to-r from-gray-800 to-gray-900 border border-yellow-500/30 rounded-2xl px-8 py-6 shadow-2xl">
-              <div className="w-12 h-12 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-full flex items-center justify-center">
-                <StarIcon className="h-6 w-6 text-white" />
-              </div>
-              <span className="text-blue-400 font-semibold text-lg">&quot;Experience is paramount at BEST&quot;</span>
-            </div>
           </motion.div>
         </div>
       </section>
