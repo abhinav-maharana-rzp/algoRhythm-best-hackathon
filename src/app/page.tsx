@@ -607,7 +607,7 @@ Ready to transform challenges into opportunities and build innovative solutions 
                     <Badge className="bg-blue-900/50 text-blue-200 border border-blue-500/30">Data Accessibility</Badge>
                   </div>
                   <CardTitle className="text-xl text-white group-hover:text-orange-400 transition-colors">
-                    "Ask Me Anything" Data Bot
+                    &quot;Ask Me Anything&quot; Data Bot
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
